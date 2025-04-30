@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Ella 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fef6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+    }
+
+    #container {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    #container:hover {
+      transform: scale(1.03);
+    }
+
+    img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <img id="giftImage" src="gift1.jpg" alt="Gift">
+  </div>
+
+  <script>
+    const images = ["gift1.jpg", "gift2.jpg", "gift3.jpg"];
+    let index = 0;
+
+    const imgElement = document.getElementById("giftImage");
+    const container = document.getElementById("container");
+
+    container.addEventListener("click", () => {
+      index++;
+      if (index < images.length) {
+        imgElement.src = images[index];
+      }
+    });
+  </script>
+
+</body>
+</html>
