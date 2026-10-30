@@ -4,54 +4,187 @@
   <meta charset="UTF-8">
   <title>Para Ella 💖</title>
   <style>
+    :root {
+      --bg1: #fff5f8;
+      --bg2: #ffeaf1;
+      --card: rgba(255, 255, 255, 0.78);
+      --text: #5e2a3d;
+      --accent: #ff6fa6;
+      --shadow: rgba(111, 46, 81, 0.2);
+      --final: #ff4b94;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      padding: 0;
-      background-color: #fef6f9;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    .wrap {
+      width: min(92vw, 620px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .card {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid rgba(255, 111, 166, 0.2);
+      box-shadow: 0 16px 30px var(--shadow);
+      border-radius: 22px;
+      padding: 22px 24px;
+      backdrop-filter: blur(8px);
+      text-align: center;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s ease;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.7;
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
     #container {
       cursor: pointer;
+      width: 100%;
+      display: flex;
+      justify-content: center;
       transition: transform 0.3s ease;
     }
 
     #container:hover {
-      transform: scale(1.03);
+      transform: scale(1.02);
     }
 
     img {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: min(90vw, 500px);
+      max-height: 68vh;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: 0 18px 35px rgba(92, 31, 56, 0.24);
+      border: 4px solid rgba(255, 255, 255, 0.8);
+      display: block;
+    }
+
+    .hint {
+      font-size: 0.92rem;
+      text-align: center;
+      opacity: 0.8;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .final-message {
+      display: none;
+      font-size: clamp(2.1rem, 6vw, 4.4rem);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      color: var(--final);
+      text-shadow: 0 10px 25px rgba(255, 75, 148, 0.2);
+      text-align: center;
+      animation: pulse 1.2s ease-in-out infinite alternate;
+    }
+
+    body.final .card,
+    body.final #container,
+    body.final .hint {
+      display: none;
+    }
+
+    body.final .final-message {
+      display: block;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(0.96); opacity: 0.9; }
+      to { transform: scale(1.04); opacity: 1; }
     }
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <div class="card">
+      <p id="letterText"></p>
+    </div>
 
-  <div id="container">
-    <img id="giftImage" src="gift%201.jpg" alt="Gift">
+    <div id="container">
+      <img id="giftImage" src="gift%201.jpg" alt="Gift">
+    </div>
+
+    <div class="hint" id="hintText">Haz clic para seguir</div>
+
+    <div class="final-message" id="finalMessage">YO TE AMO LESS</div>
   </div>
 
   <script>
-    const images = ["gift%201.jpg", "gift%202.jpg", "gift%203.jpg"];
+    const phases = [
+      {
+        image: "gift%201.jpg",
+        text: "Para empezar, aún no sé si mi Dios ya me haya permitido conocerte o si aún no lo haga... pero sin duda lo sabré ese día tan especial en el que estemos frente a frente, con Dios como testigo, haciendo una promesa de amor.",
+        hint: "Haz clic para seguir"
+      },
+      {
+        image: "gift%202.jpg",
+        text: "Eres y serás mi regalo del cielo, aquel que en verdad soñaba y suspiraba por ver, aquel que anhelaba poder compartir los más pequeños detalles de la vida: las risas, las sonrisas, los momentos más dulces, las noches estrelladas, admirar el cielo, admirar la luna... y sobre todo admirar a la más hermosa creación que Dios puso en mi vida... Less.",
+        hint: "Haz clic para seguir"
+      },
+      {
+        image: "gift%203.jpg",
+        text: "Te espero, oro por ti, oro por tus procesos, oro por lo que Dios está haciendo en tu vida, y oro para que tu más grande amor sea Jesús; que lo ames con toda tu fuerza y con todo tu corazón. Quiero decirte que aún estoy creciendo en amor para ti... No hay día en el que no le pida a mi Dios que me enseñe a amar, para que el día en que estés a mi lado sepa tratarte como mereces. Yo no estoy dispuesto a dar menos; ¿cómo dar menos si mi Dios murió por amor a su iglesia? No tengo miedo de morir y verme crucificado. Dios me ha creado para amar de verdad, y lucharé por ello.",
+        hint: "Haz clic para entenderlo todo"
+      },
+      {
+        image: "gift%201.jpg",
+        text: "Ahora sé que tú eres el amor de mi vida, Less. Aunque no sabemos todavía cuál será el camino ni en qué tiempo nos encontramos, quiero que sepas que mi corazón ya te ha elegido, y que yo me entrego a esta historia con amor, paciencia, fe y esperanza. Quiero creer en lo que Dios tiene preparado para nosotros, y en que, tarde o temprano, si es Su voluntad, nos volveremos a encontrar para ser felices al fin.",
+        hint: "Haz clic para la última palabra"
+      }
+    ];
+
+    const letterText = document.getElementById("letterText");
+    const giftImage = document.getElementById("giftImage");
+    const hintText = document.getElementById("hintText");
+    const container = document.getElementById("container");
+    const finalMessage = document.getElementById("finalMessage");
+
     let index = 0;
 
-    const imgElement = document.getElementById("giftImage");
-    const container = document.getElementById("container");
+    function renderPhase() {
+      const phase = phases[index];
+      letterText.textContent = phase.text;
+      giftImage.src = phase.image;
+      hintText.textContent = phase.hint;
+    }
 
     container.addEventListener("click", () => {
       index++;
-      if (index < images.length) {
-        imgElement.src = images[index];
-      }
-    });
-  </script>
 
+      if (index < phases.length) {
+        renderPhase();
+        return;
+      }
+
+      document.body.classList.add("final");
+      finalMessage.textContent = "YO TE AMO LESS";
+    });
+
+    renderPhase();
+  </script>
 </body>
 </html>
